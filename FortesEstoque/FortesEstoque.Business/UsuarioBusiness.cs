@@ -26,7 +26,7 @@ namespace FortesEstoque.Business
                 }
                 this._usuarioDAO.Inserir(usuario);
             }
-            catch (Exception xx)
+            catch (Exception ex)
             {
                 throw ex;
             }

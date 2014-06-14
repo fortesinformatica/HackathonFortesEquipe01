@@ -11,11 +11,11 @@ namespace FortesEstoque.DAO
 {
     public class BaseDao<T> where T : class
     {
-        private AlmoxarifadoEntities _context;
+        private AlmoxarifadoEntidates _context;
 
         public BaseDao()
         {
-            this._context = new AlmoxarifadoEntities();
+            this._context = new AlmoxarifadoEntidates();
         }
 
         public void Salvar()

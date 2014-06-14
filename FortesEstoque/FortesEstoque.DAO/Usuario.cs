@@ -17,15 +17,13 @@ namespace FortesEstoque.DAO
         public Usuario()
         {
             this.ProdutoHistorico = new HashSet<ProdutoHistorico>();
-            this.Movimentacao = new HashSet<Movimentacao>();
         }
     
         public int Id { get; set; }
+        public string Nome { get; set; }
         public string Login { get; set; }
         public string Senha { get; set; }
-        public string Nome { get; set; }
     
         public virtual ICollection<ProdutoHistorico> ProdutoHistorico { get; set; }
-        public virtual ICollection<Movimentacao> Movimentacao { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FortesEstoque.DAO
 {
-    public class ProdutoDAO : BaseDao
+    public class ProdutoDAO : BaseDao<Produto>
     {
     }
 }

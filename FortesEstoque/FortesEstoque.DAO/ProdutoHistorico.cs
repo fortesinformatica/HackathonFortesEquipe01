@@ -17,11 +17,12 @@ namespace FortesEstoque.DAO
         public int Id { get; set; }
         public int ProdutoId { get; set; }
         public int UsuarioId { get; set; }
-        public System.DateTime DataEntrada { get; set; }
-        public System.DateTime DataSaida { get; set; }
-        public int Qtde { get; set; }
+        public int SetorId { get; set; }
+        public System.DateTime DataRegistro { get; set; }
+        public int Qtd { get; set; }
     
         public virtual Produto Produto { get; set; }
+        public virtual Setor Setor { get; set; }
         public virtual Usuario Usuario { get; set; }
     }
 }

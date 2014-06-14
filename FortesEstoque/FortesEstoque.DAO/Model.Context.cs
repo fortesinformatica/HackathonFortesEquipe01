@@ -13,10 +13,10 @@ namespace FortesEstoque.DAO
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AlmoxarifadoEntities : DbContext
+    public partial class AlmoxarifadoEntidates : DbContext
     {
-        public AlmoxarifadoEntities()
-            : base("name=AlmoxarifadoEntities")
+        public AlmoxarifadoEntidates()
+            : base("name=AlmoxarifadoEntidates")
         {
         }
     
@@ -27,13 +27,8 @@ namespace FortesEstoque.DAO
     
         public DbSet<Produto> Produto { get; set; }
         public DbSet<ProdutoHistorico> ProdutoHistorico { get; set; }
-        public DbSet<Usuario> Usuario { get; set; }
-        public DbSet<Cliente> Cliente { get; set; }
-        public DbSet<Entidade> Entidade { get; set; }
-        public DbSet<Fornecedor> Fornecedor { get; set; }
-        public DbSet<Movimentacao> Movimentacao { get; set; }
-        public DbSet<ProdutoGrupo> ProdutoGrupo { get; set; }
+        public DbSet<Setor> Setor { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public DbSet<TipoMovimentacao> TipoMovimentacao { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
     }
 }
