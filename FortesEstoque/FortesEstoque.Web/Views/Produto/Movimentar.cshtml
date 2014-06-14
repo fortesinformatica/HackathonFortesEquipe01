@@ -1,0 +1,39 @@
+﻿@model FortesEstoque.DAO.ProdutoHistorico
+@{
+    ViewBag.Title = "Movimentar";
+}
+<script src="@Url.Content("~/Scripts/configuraForm.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Movimentar.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(Movimentar.init);
+</script>
+<h2>Movimentar</h2>
+@using(Html.BeginForm("Movimentar", "Produto", FormMethod.Post, new { id = "formMovimentar" }))
+{
+
+    <table>
+        <tr>
+            <td>@Html.Label("Produto")</td>
+            <td>@Html.DropDownListFor(model => model.ProdutoId, ViewBag.produtos as SelectList, new { id = "dplProdutos" })</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Operação")</td>
+            <td>@Html.DropDownListFor(model => model.Tipo, ViewBag.operacoes as SelectList, new { id = "dplOperacoes" })</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Quantidade")</td>
+            <td>@Html.TextBoxFor(model => model.Qtd, new { id = "txtQtd" })</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("Setor")</td>
+            <td>@Html.DropDownListFor(model => model.SetorId, ViewBag.setores as SelectList, new { id = "dplSetores" })</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" id="btnMovimentar" value="Movimentar" />
+            </td>
+        </tr>
+    </table>
+}
+
+<div id="divMovimentacoes"></div>

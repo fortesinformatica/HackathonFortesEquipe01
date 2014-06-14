@@ -11,44 +11,44 @@ namespace FortesEstoque.DAO
 {
     public class BaseDao<T> where T : class
     {
-        private AlmoxarifadoEntidates _context;
+        public AlmoxarifadoEntidates Context;
 
         public BaseDao()
         {
-            this._context = new AlmoxarifadoEntidates();
+            this.Context = new AlmoxarifadoEntidates();
         }
 
         public void Salvar()
         {
-            this._context.SaveChanges();
+            this.Context.SaveChanges();
         }
 
         public virtual void Inserir(T entity)
         {
-            this._context.Set<T>().Add(entity);
+            this.Context.Set<T>().Add(entity);
         }
 
-        public virtual IQueryable<T> Consultar()
+        public virtual List<T> Consultar()
         {
-            return this._context.Set<T>();
+            return this.Context.Set<T>().ToList();
         }
 
-        public virtual IQueryable<T> Consultar(Expression<Func<T,bool>> condicao)
+        public virtual List<T> Consultar(Expression<Func<T,bool>> condicao)
         {
-            return this._context.Set<T>().Where(condicao);
+            return this.Context.Set<T>().Where(condicao).ToList();
         }
 
         public virtual void Remover(T entity)
         {
-            this._context.Set<T>().Remove(entity);
+            this.Context.Set<T>().Remove(entity);
         }
 
         public virtual void Atualizar(T entity)
         {
-            DbEntityEntry entityEntry = this._context.Entry(entity);
+            DbEntityEntry entityEntry = this.Context.Entry(entity);
             if (entityEntry.State == EntityState.Detached)
             {
-                this._context.Set<T>().Attach(entity);
+                this.Context.Set<T>().Attach(entity);
                 entityEntry.State = EntityState.Modified;
             }
         }

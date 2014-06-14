@@ -1,0 +1,8 @@
+﻿@model IEnumerable<FortesEstoque.DAO.ProdutoHistorico>
+@{
+    Layout = null;
+    var grid = new WebGrid(source: Model);
+}
+
+@grid.GetHtml();
+

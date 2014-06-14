@@ -104,6 +104,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DropDown.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\MovimentacaoController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
@@ -185,6 +186,7 @@
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\Movimentar.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -211,6 +213,8 @@
     <Content Include="Views\Produto\Index.cshtml" />
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Views\Produto\Adicionar.cshtml" />
+    <Content Include="Views\Produto\Movimentar.cshtml" />
+    <Content Include="Views\Produto\Consultar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -225,6 +229,10 @@
     <ProjectReference Include="..\FortesEstoque.Business\FortesEstoque.Business.csproj">
       <Project>{68c39312-bbf5-45a6-be20-32cb91896f53}</Project>
       <Name>FortesEstoque.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FortesEstoque.DAO\FortesEstoque.DAO.csproj">
+      <Project>{f4a30a03-05f9-49ff-83c8-0640d0530166}</Project>
+      <Name>FortesEstoque.DAO</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

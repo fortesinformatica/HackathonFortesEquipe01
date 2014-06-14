@@ -16,6 +16,18 @@ namespace FortesEstoque.Business
             this._usuarioDAO = new UsuarioDAO();
         }
 
+        public List<Usuario> Consultar()
+        {
+            try
+            {
+                return this._usuarioDAO.Consultar();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void Inserir(Usuario usuario)
         {
             try
