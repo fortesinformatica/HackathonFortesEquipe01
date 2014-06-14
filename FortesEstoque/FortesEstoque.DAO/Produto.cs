@@ -23,6 +23,7 @@ namespace FortesEstoque.DAO
         public string Nome { get; set; }
         public int QtdMinima { get; set; }
         public bool Consumivel { get; set; }
+        public Nullable<int> Qtd { get; set; }
     
         public virtual ICollection<ProdutoHistorico> ProdutoHistorico { get; set; }
     }

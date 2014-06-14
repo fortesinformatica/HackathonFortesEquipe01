@@ -26,9 +26,9 @@ namespace FortesEstoque.DAO
         }
     
         public DbSet<Produto> Produto { get; set; }
-        public DbSet<ProdutoHistorico> ProdutoHistorico { get; set; }
         public DbSet<Setor> Setor { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<Usuario> Usuario { get; set; }
+        public DbSet<ProdutoHistorico> ProdutoHistorico { get; set; }
     }
 }

@@ -4,60 +4,43 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AlmoxarifadoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="AlmoxarifadoModelStoreContainer">
-          <EntitySet Name="Produto" EntityType="AlmoxarifadoModel.Store.Produto" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="ProdutoHistorico" EntityType="AlmoxarifadoModel.Store.ProdutoHistorico" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Setor" EntityType="AlmoxarifadoModel.Store.Setor" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="AlmoxarifadoModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Usuario" EntityType="AlmoxarifadoModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_ProdutoHistorico_Produto" Association="AlmoxarifadoModel.Store.FK_ProdutoHistorico_Produto">
-            <End Role="Produto" EntitySet="Produto" />
-            <End Role="ProdutoHistorico" EntitySet="ProdutoHistorico" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProdutoHistorico_Setor" Association="AlmoxarifadoModel.Store.FK_ProdutoHistorico_Setor">
-            <End Role="Setor" EntitySet="Setor" />
-            <End Role="ProdutoHistorico" EntitySet="ProdutoHistorico" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProdutoHistorico_Usuario" Association="AlmoxarifadoModel.Store.FK_ProdutoHistorico_Usuario">
-            <End Role="Usuario" EntitySet="Usuario" />
-            <End Role="ProdutoHistorico" EntitySet="ProdutoHistorico" />
-          </AssociationSet>
-        </EntityContainer>
+    <Schema Namespace="AlmoxarifadoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Produto">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome" Type="varchar(max)" Nullable="false" />
           <Property Name="QtdMinima" Type="int" Nullable="false" />
           <Property Name="Consumivel" Type="bit" Nullable="false" />
+          <Property Name="Qtd" Type="int" />
         </EntityType>
         <EntityType Name="ProdutoHistorico">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProdutoId" Type="int" Nullable="false" />
           <Property Name="UsuarioId" Type="int" Nullable="false" />
           <Property Name="SetorId" Type="int" Nullable="false" />
           <Property Name="DataRegistro" Type="datetime" Nullable="false" />
           <Property Name="Qtd" Type="int" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="Setor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
@@ -65,14 +48,14 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome" Type="varchar(max)" Nullable="false" />
           <Property Name="Login" Type="varchar(max)" Nullable="false" />
-          <Property Name="Senha" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="Senha" Type="varchar" MaxLength="32" Nullable="false" />
         </EntityType>
         <Association Name="FK_ProdutoHistorico_Produto">
-          <End Role="Produto" Type="AlmoxarifadoModel.Store.Produto" Multiplicity="1" />
-          <End Role="ProdutoHistorico" Type="AlmoxarifadoModel.Store.ProdutoHistorico" Multiplicity="*" />
+          <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
+          <End Role="ProdutoHistorico" Type="Self.ProdutoHistorico" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produto">
               <PropertyRef Name="Id" />
@@ -83,8 +66,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProdutoHistorico_Setor">
-          <End Role="Setor" Type="AlmoxarifadoModel.Store.Setor" Multiplicity="1" />
-          <End Role="ProdutoHistorico" Type="AlmoxarifadoModel.Store.ProdutoHistorico" Multiplicity="*" />
+          <End Role="Setor" Type="Self.Setor" Multiplicity="1" />
+          <End Role="ProdutoHistorico" Type="Self.ProdutoHistorico" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Setor">
               <PropertyRef Name="Id" />
@@ -95,8 +78,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProdutoHistorico_Usuario">
-          <End Role="Usuario" Type="AlmoxarifadoModel.Store.Usuario" Multiplicity="1" />
-          <End Role="ProdutoHistorico" Type="AlmoxarifadoModel.Store.ProdutoHistorico" Multiplicity="*" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="ProdutoHistorico" Type="Self.ProdutoHistorico" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="Id" />
@@ -106,17 +89,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityContainer Name="AlmoxarifadoModelStoreContainer">
+          <EntitySet Name="Produto" EntityType="Self.Produto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProdutoHistorico" EntityType="Self.ProdutoHistorico" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Setor" EntityType="Self.Setor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ProdutoHistorico_Produto" Association="Self.FK_ProdutoHistorico_Produto">
+            <End Role="Produto" EntitySet="Produto" />
+            <End Role="ProdutoHistorico" EntitySet="ProdutoHistorico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdutoHistorico_Setor" Association="Self.FK_ProdutoHistorico_Setor">
+            <End Role="Setor" EntitySet="Setor" />
+            <End Role="ProdutoHistorico" EntitySet="ProdutoHistorico" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProdutoHistorico_Usuario" Association="Self.FK_ProdutoHistorico_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="ProdutoHistorico" EntitySet="ProdutoHistorico" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AlmoxarifadoModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="AlmoxarifadoEntidates" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Produto" EntityType="AlmoxarifadoModel.Produto" />
-          <EntitySet Name="ProdutoHistorico" EntityType="AlmoxarifadoModel.ProdutoHistorico" />
           <EntitySet Name="Setor" EntityType="AlmoxarifadoModel.Setor" />
           <EntitySet Name="sysdiagrams" EntityType="AlmoxarifadoModel.sysdiagrams" />
           <EntitySet Name="Usuario" EntityType="AlmoxarifadoModel.Usuario" />
+          <EntitySet Name="ProdutoHistorico" EntityType="AlmoxarifadoModel.ProdutoHistorico" />
           <AssociationSet Name="FK_ProdutoHistorico_Produto" Association="AlmoxarifadoModel.FK_ProdutoHistorico_Produto">
             <End Role="Produto" EntitySet="Produto" />
             <End Role="ProdutoHistorico" EntitySet="ProdutoHistorico" />
@@ -129,7 +130,7 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="ProdutoHistorico" EntitySet="ProdutoHistorico" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <EntityType Name="Produto">
           <Key>
             <PropertyRef Name="Id" />
@@ -138,21 +139,8 @@
           <Property Name="Nome" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="QtdMinima" Type="Int32" Nullable="false" />
           <Property Name="Consumivel" Type="Boolean" Nullable="false" />
+          <Property Name="Qtd" Type="Int32" />
           <NavigationProperty Name="ProdutoHistorico" Relationship="AlmoxarifadoModel.FK_ProdutoHistorico_Produto" FromRole="Produto" ToRole="ProdutoHistorico" />
-        </EntityType>
-        <EntityType Name="ProdutoHistorico">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="ProdutoId" Type="Int32" Nullable="false" />
-          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
-          <Property Name="SetorId" Type="Int32" Nullable="false" />
-          <Property Name="DataRegistro" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Qtd" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Produto" Relationship="AlmoxarifadoModel.FK_ProdutoHistorico_Produto" FromRole="ProdutoHistorico" ToRole="Produto" />
-          <NavigationProperty Name="Setor" Relationship="AlmoxarifadoModel.FK_ProdutoHistorico_Setor" FromRole="ProdutoHistorico" ToRole="Setor" />
-          <NavigationProperty Name="Usuario" Relationship="AlmoxarifadoModel.FK_ProdutoHistorico_Usuario" FromRole="ProdutoHistorico" ToRole="Usuario" />
         </EntityType>
         <EntityType Name="Setor">
           <Key>
@@ -182,9 +170,24 @@
           <Property Name="Senha" Type="String" Nullable="false" MaxLength="32" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="ProdutoHistorico" Relationship="AlmoxarifadoModel.FK_ProdutoHistorico_Usuario" FromRole="Usuario" ToRole="ProdutoHistorico" />
         </EntityType>
+        <EntityType Name="ProdutoHistorico">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProdutoId" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioId" Type="Int32" Nullable="false" />
+          <Property Name="SetorId" Type="Int32" Nullable="false" />
+          <Property Name="DataRegistro" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Qtd" Type="Int32" Nullable="false" />
+          <Property Name="Tipo" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Produto" Relationship="AlmoxarifadoModel.FK_ProdutoHistorico_Produto" FromRole="ProdutoHistorico" ToRole="Produto" />
+          <NavigationProperty Name="Setor" Relationship="AlmoxarifadoModel.FK_ProdutoHistorico_Setor" FromRole="ProdutoHistorico" ToRole="Setor" />
+          <NavigationProperty Name="Usuario" Relationship="AlmoxarifadoModel.FK_ProdutoHistorico_Usuario" FromRole="ProdutoHistorico" ToRole="Usuario" />
+        </EntityType>
         <Association Name="FK_ProdutoHistorico_Produto">
-          <End Role="Produto" Type="AlmoxarifadoModel.Produto" Multiplicity="1" />
-          <End Role="ProdutoHistorico" Type="AlmoxarifadoModel.ProdutoHistorico" Multiplicity="*" />
+          <End Type="AlmoxarifadoModel.Produto" Role="Produto" Multiplicity="1" />
+          <End Type="AlmoxarifadoModel.ProdutoHistorico" Role="ProdutoHistorico" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Produto">
               <PropertyRef Name="Id" />
@@ -195,8 +198,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProdutoHistorico_Setor">
-          <End Role="Setor" Type="AlmoxarifadoModel.Setor" Multiplicity="1" />
-          <End Role="ProdutoHistorico" Type="AlmoxarifadoModel.ProdutoHistorico" Multiplicity="*" />
+          <End Type="AlmoxarifadoModel.Setor" Role="Setor" Multiplicity="1" />
+          <End Type="AlmoxarifadoModel.ProdutoHistorico" Role="ProdutoHistorico" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Setor">
               <PropertyRef Name="Id" />
@@ -207,8 +210,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_ProdutoHistorico_Usuario">
-          <End Role="Usuario" Type="AlmoxarifadoModel.Usuario" Multiplicity="1" />
-          <End Role="ProdutoHistorico" Type="AlmoxarifadoModel.ProdutoHistorico" Multiplicity="*" />
+          <End Type="AlmoxarifadoModel.Usuario" Role="Usuario" Multiplicity="1" />
+          <End Type="AlmoxarifadoModel.ProdutoHistorico" Role="ProdutoHistorico" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Usuario">
               <PropertyRef Name="Id" />
@@ -218,7 +221,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -227,22 +230,11 @@
           <EntitySetMapping Name="Produto">
             <EntityTypeMapping TypeName="AlmoxarifadoModel.Produto">
               <MappingFragment StoreEntitySet="Produto">
+                <ScalarProperty Name="Qtd" ColumnName="Qtd" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="QtdMinima" ColumnName="QtdMinima" />
                 <ScalarProperty Name="Consumivel" ColumnName="Consumivel" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProdutoHistorico">
-            <EntityTypeMapping TypeName="AlmoxarifadoModel.ProdutoHistorico">
-              <MappingFragment StoreEntitySet="ProdutoHistorico">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ProdutoId" ColumnName="ProdutoId" />
-                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
-                <ScalarProperty Name="SetorId" ColumnName="SetorId" />
-                <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />
-                <ScalarProperty Name="Qtd" ColumnName="Qtd" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -275,6 +267,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProdutoHistorico">
+            <EntityTypeMapping TypeName="AlmoxarifadoModel.ProdutoHistorico">
+              <MappingFragment StoreEntitySet="ProdutoHistorico">
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+                <ScalarProperty Name="Qtd" ColumnName="Qtd" />
+                <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />
+                <ScalarProperty Name="SetorId" ColumnName="SetorId" />
+                <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
+                <ScalarProperty Name="ProdutoId" ColumnName="ProdutoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -292,6 +297,7 @@
         <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

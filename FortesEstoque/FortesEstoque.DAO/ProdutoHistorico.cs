@@ -20,6 +20,7 @@ namespace FortesEstoque.DAO
         public int SetorId { get; set; }
         public System.DateTime DataRegistro { get; set; }
         public int Qtd { get; set; }
+        public string Tipo { get; set; }
     
         public virtual Produto Produto { get; set; }
         public virtual Setor Setor { get; set; }
