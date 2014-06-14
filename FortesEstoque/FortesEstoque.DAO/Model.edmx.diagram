@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b9eb9023b36b4c2a97ebe89a9eb6b875" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="AlmoxarifadoModel.Produto" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmoxarifadoModel.ProdutoHistorico" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="AlmoxarifadoModel.Usuario" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="AlmoxarifadoModel.FK_ProdutoHistorico_ProdutoHistorico" ManuallyRouted="false" />
+        <AssociationConnector Association="AlmoxarifadoModel.FK_ProdutoHistorico_Usuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AlmoxarifadoModel.Cliente" Width="1.5" PointX="5.0333487321777959" PointY="10.321068634428581" />
+        <EntityTypeShape EntityType="AlmoxarifadoModel.Entidade" Width="1.5" PointX="4.6561823620722542" PointY="25.572477307902872" />
+        <EntityTypeShape EntityType="AlmoxarifadoModel.Fornecedor" Width="1.5" PointX="10.807381074320237" PointY="28.723102180623961" />
+        <EntityTypeShape EntityType="AlmoxarifadoModel.Movimentacao" Width="1.5" PointX="7.8239234573319187" PointY="28.731052724984966" />
+        <EntityTypeShape EntityType="AlmoxarifadoModel.ProdutoGrupo" Width="1.5" PointX="10.425088242825627" PointY="10.524219353927402" />
+        <EntityTypeShape EntityType="AlmoxarifadoModel.sysdiagrams" Width="1.5" PointX="2.0695889955710567" PointY="13.304089209672105" />
+        <EntityTypeShape EntityType="AlmoxarifadoModel.TipoMovimentacao" Width="1.5" PointX="11.102325556381757" PointY="10.634686877315252" />
+        <AssociationConnector Association="AlmoxarifadoModel.FK_Cliente_Entidade" />
+        <AssociationConnector Association="AlmoxarifadoModel.FK_Entidade_Entidade" />
+        <AssociationConnector Association="AlmoxarifadoModel.FK_ProdutoHistorico_Entidade" />
+        <AssociationConnector Association="AlmoxarifadoModel.FK_ProdutoHistorico_ProdutoHistorico1" />
+        <AssociationConnector Association="AlmoxarifadoModel.FK_ProdutoHistorico_TipoMovimentacao" />
+        <AssociationConnector Association="AlmoxarifadoModel.FK_ProdutoHistorico_Usuario1" />
+        <AssociationConnector Association="AlmoxarifadoModel.FK_Produto_ProdutoGrupo" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
